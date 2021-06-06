@@ -1,0 +1,51 @@
+﻿.content-wrapper {
+    background-image: url('/images/bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.btn-full{
+    width:100%;
+}
+.main-container {
+    padding: 20px 0;
+}
+
+.btn-icon {
+    border: none;
+    outline: none;
+    height: auto;
+    width: auto;
+    padding: 5px;
+    background: none;
+}
+
+a.btn-icon {
+    text-decoration: none;
+}
+
+    a.btn-icon:hover {
+        text-decoration: none;
+        color: #fff;
+    }
+
+.btn-tool-inline {
+    font-size: 13px;
+    color: #fff;
+}
+
+.tool-inline {
+    width: 100%;
+    float: left;
+    text-align: right;
+    background: #17549e;
+    padding: 5px 10px;
+}

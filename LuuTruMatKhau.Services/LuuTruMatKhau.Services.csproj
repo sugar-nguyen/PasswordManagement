@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LuuTruMatKhau.DataAccess\LuuTruMatKhau.DataAccess.csproj" />
+    <ProjectReference Include="..\LuuTruMatKhau.Model\LuuTruMatKhau.Model.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+
+
+        /***/
+
+        body {
+            background: #222d32;
+            /* font-family: "Roboto", sans-serif;*/
+        }
+
+        .login-box {
+            margin-top: 75px;
+            height: auto;
+            background: #1a2226;
+            text-align: center;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        }
+
+        .login-key {
+            height: 100px;
+            font-size: 80px;
+            line-height: 100px;
+            background: -webkit-linear-gradient(#27ef9f, #0db8de);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .login-title {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 30px;
+            letter-spacing: 2px;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #ecf0f5;
+        }
+
+        .login-form {
+            margin-top: 25px;
+            text-align: left;
+        }
+
+            .login-form input[type="text"] {
+                background-color: #1a2226;
+                border: none;
+                border-bottom: 2px solid #0db8de;
+                border-top: 0px;
+                border-radius: 0px;
+                font-weight: bold;
+                outline: 0;
+                margin-bottom: 20px;
+                padding-left: 0px;
+                color: #ecf0f5;
+            }
+
+            .login-form input[type="password"] {
+                background-color: #1a2226;
+                border: none;
+                border-bottom: 2px solid #0db8de;
+                border-top: 0px;
+                border-radius: 0px;
+                font-weight: bold;
+                outline: 0;
+                padding-left: 0px;
+                margin-bottom: 20px;
+                color: #ecf0f5;
+            }
+
+            .login-form .form-group {
+                margin-bottom: 40px;
+                outline: 0px;
+            }
+
+            .login-form .form-control:focus {
+                border-color: inherit;
+                -webkit-box-shadow: none;
+                box-shadow: none;
+                border-bottom: 2px solid #0db8de;
+                outline: 0;
+                background-color: #1a2226;
+                color: #ecf0f5;
+            }
+
+            .login-form input:focus {
+                outline: none;
+                box-shadow: 0 0 0;
+            }
+
+        label {
+            margin-bottom: 0px;
+        }
+
+        .login-form .form-control-label {
+            font-size: 10px;
+            color: #6c6c6c;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .login-form .btn-outline-primary {
+            border-color: #0db8de;
+            color: #0db8de;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        }
+
+        .tx-create-account {
+            text-decoration: underline;
+            margin-right: 10px;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: #0db8de;
+            right: 0px;
+        }
+
+        .login-btm {
+            float: left;
+        }
+
+        .login-button {
+            padding-right: 0px;
+            text-align: right;
+            margin-bottom: 25px;
+        }
+
+        .login-text {
+            text-align: left;
+            padding-left: 0px;
+            color: #a2a4a4;
+        }
+
+        .loginbttm {
+            padding: 0px;
+        }
+
+        /***/
+
+        span.field-validation-error {
+            text-align: left;
+            width: 100%;
+            float: left;
+            font-size: 11px;
+            color: #e01414;
+        }
+    </style>
+</head>
+<body>
+
+
+    @RenderBody()
+
+    <div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="btnOK">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script>
+
+        function activeMember() {
+            $.ajax({
+                url: '/Member/ActiveMember',
+                type:'POST',
+                data: { code: $('#code-g').val(), userName: $('#usName').val() },
+                success: function (rs) {
+                    if (rs > 0) {
+                        $('#md-mes').removeClass('text-danger').addClass('text-success').html("Register successfully, please press ok to redirect to login page !");
+                        setTimeout(function () { window.location.href = '/Member/Login'; }, 2000);
+                    } else {
+                        $('#md-mes').html('Register fail.');
+                    }
+                }
+            });
+        }
+    </script>
+
+    @RenderSection("scripts", false)
+</body>
+</html>
