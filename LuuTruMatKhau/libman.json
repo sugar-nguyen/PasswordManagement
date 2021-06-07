@@ -5,6 +5,18 @@
     {
       "library": "font-awesome@5.15.3",
       "destination": "wwwroot/lib/font-awesome/"
+    },
+    {
+      "library": "datatables.net@2.1.1",
+      "destination": "wwwroot/lib/datatables.net/"
+    },
+    {
+      "library": "datatable@2.0.1",
+      "destination": "wwwroot/lib/datatable/",
+      "files": [
+        "js/datatable.min.js",
+        "css/datatable.min.css"
+      ]
     }
   ]
 }

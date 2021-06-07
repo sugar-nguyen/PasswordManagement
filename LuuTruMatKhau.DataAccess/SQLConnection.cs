@@ -72,6 +72,25 @@ namespace LuuTruMatKhau.DataAccess
             }
             return result;
         }
+        public async Task<int> ExecuteNonQueryAsync(string spname, params object[] parameters)
+        {
+            int result = 0;
+            try
+            {
+                var query = spname;
+                var param = new DynamicParameters();
+                for (int i = 0; i < parameters.Length - 1; i += 2)
+                {
+                    param.Add(parameters[i].ToString(), parameters[i + 1]);
+                }
+                result = await context.Database.ExecuteAsync(query, param, commandType: System.Data.CommandType.StoredProcedure, commandTimeout: _commandTimeout);
+
+            }
+            catch (Exception ex)
+            {
+            }
+            return result;
+        }
         public int ExecuteNonQueryWithTransaction(string spname, params object[] parameters)
         {
             int result = 0;
@@ -217,5 +236,40 @@ namespace LuuTruMatKhau.DataAccess
             return model;
         }
 
+        public async Task<List<OutputModel>> ExecuteNonQueryWithOutParamAsync(string spname, params object[] parameters)
+        {
+            List<OutputModel> model = new List<OutputModel>();
+            try
+            {
+                var query = spname;
+                var param = new DynamicParameters();
+                for (int i = 0; i < parameters.Length - 1; i += 2)
+                {
+                    if (parameters[i].ToString().Contains("|out"))
+                    {
+                        param.Add(parameters[i].ToString().Replace("|out", ""), parameters[i + 1], direction: ParameterDirection.Output);
+                        OutputModel item = new OutputModel
+                        {
+                            Label = parameters[i].ToString().Replace("|out", ""),
+                            Value = ""
+                        };
+                        model.Add(item);
+                    }
+                    else
+                    {
+                        param.Add(parameters[i].ToString(), parameters[i + 1]);
+                    }
+                }
+                await context.Database.ExecuteAsync(query, param, commandType: System.Data.CommandType.StoredProcedure);
+                for (int i = 0; i < model.Count; i++)
+                {
+                    model[i].Value = (param.Get<dynamic>(model[i].Label)).ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return model;
+        }
     }
 }

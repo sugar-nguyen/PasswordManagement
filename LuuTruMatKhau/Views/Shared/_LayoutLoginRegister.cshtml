@@ -190,13 +190,13 @@
 
         function activeMember() {
             $.ajax({
-                url: '/Member/ActiveMember',
+                url: '/auth/active',
                 type:'POST',
                 data: { code: $('#code-g').val(), userName: $('#usName').val() },
                 success: function (rs) {
                     if (rs > 0) {
                         $('#md-mes').removeClass('text-danger').addClass('text-success').html("Register successfully, please press ok to redirect to login page !");
-                        setTimeout(function () { window.location.href = '/Member/Login'; }, 2000);
+                        setTimeout(function () { window.location.href = '/auth/login'; }, 2000);
                     } else {
                         $('#md-mes').html('Register fail.');
                     }

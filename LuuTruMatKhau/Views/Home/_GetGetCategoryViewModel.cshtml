@@ -1,0 +1,33 @@
+﻿@model List<LuuTruMatKhau.Model.Category>
+@{
+    Layout = null;
+}
+<table class="table text-nowrap" id="table-cate">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Category Name</th>
+            <th class="w-50">Description</th>
+            <th>Create Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ int n = 1;}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@n</td>
+                <td>@item.CateName</td>
+                <td>@item.Description</td>
+                <td>@item.DateCreated</td>
+                <td class="text-center">
+                    <button class="btn btn-outline-primary"><i class="fas fa-pencil-alt"></i>&nbsp; Edit</button>
+                    <button class="btn btn-outline-danger" onclick="Category.DelCate('@item.CateID')"><i class="fas fa-trash"></i>&nbsp;Delete</button>
+
+                </td>
+            </tr>
+            n++;
+        }
+    </tbody>
+</table>

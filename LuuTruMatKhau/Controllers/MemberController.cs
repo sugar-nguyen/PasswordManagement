@@ -82,7 +82,8 @@ namespace LuuTruMatKhau.Controllers
 
             var claims = new List<Claim>()
             {
-                new Claim(ClaimTypes.NameIdentifier,user.UserName),
+                new Claim(ClaimTypes.NameIdentifier,user.ID.ToString()),
+                new Claim(ClaimTypes.Name,user.UserName),
                 new Claim(ClaimTypes.Email,user.Email,ClaimValueTypes.Email),
             };
 
@@ -105,12 +106,13 @@ namespace LuuTruMatKhau.Controllers
             }
             await HttpContext.SignInAsync(principal, properties);
         }
-
+        [Route("register")]
         public IActionResult Register()
         {
             return View(new RegisterModel());
         }
 
+        [Route("register")]
         [AutoValidateAntiforgeryToken]
         [HttpPost]
         public IActionResult Register(RegisterModel register)
@@ -147,7 +149,7 @@ namespace LuuTruMatKhau.Controllers
             }
             return View(register);
         }
-
+        [Route("active")]
         [HttpPost]
         public IActionResult ActiveMember(string code, string userName)
         {

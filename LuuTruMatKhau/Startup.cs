@@ -28,6 +28,7 @@ namespace LuuTruMatKhau
         {
             services.AddScoped<IMemberRepository, MemberRepository>();
             services.AddScoped<IConnectionFactory, SqlConnectionFactory>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.Configure<ConfigMailModel>(Configuration.GetSection("MailConfig"));
             services.Configure<SystemConfig>(Configuration.GetSection("SystemConfig"));
 
@@ -58,7 +59,7 @@ namespace LuuTruMatKhau
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/home/error");
             }
 
             app.UseHttpsRedirection();
@@ -69,12 +70,12 @@ namespace LuuTruMatKhau
             app.UseAuthentication();
             app.UseAuthorization();
 
+
             app.UseEndpoints(endpoints =>
             {
-
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=index}/{id?}");
+                    pattern: "{controller=home}/{action=index}/{id?}");
             });
         }
     }

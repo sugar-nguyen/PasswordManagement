@@ -1,0 +1,12 @@
+﻿@model LuuTruMatKhau.Model.Category
+<form method="post" id="form-i-cate">
+    <div class="form-group">
+        <label>Category name:</label>
+        <input asp-for="CateName" class="form-control" placeholder="Enter category name">
+    </div>
+    <div class="form-group">
+        <label>Description:</label>
+        <textarea asp-for="Description" class="form-control" placeholder="Enter description"></textarea>
+    </div>
+    <span class="text-danger" id="cate-mes"></span>
+</form>

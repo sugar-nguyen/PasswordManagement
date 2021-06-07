@@ -19,6 +19,7 @@
                 <div class="col-lg-12 login-form">
                     <form method="post" asp-controller="auth" asp-action="login">
                         @Html.AntiForgeryToken()
+                        @Html.Hidden("ReturnUrl", httpContextAccessor.HttpContext.Request.Query["returnUrl"])
                         <div class="form-group">
                             <label class="form-control-label">USERNAME</label>
                             <input type="text" class="form-control" asp-for="UserName" />
@@ -26,7 +27,7 @@
                         </div>
                         <div class="form-group">
                             <label class="form-control-label">PASSWORD</label>
-                            <input type="password" class="form-control" asp-for="Password"/>
+                            <input type="password" class="form-control" asp-for="Password" />
                             <span asp-validation-for="Password"></span>
                             @Html.ValidationMessage("ErrorMes")
                         </div>
@@ -36,7 +37,7 @@
                                 <a href="#">Forget password</a>
                             </div>
                             <div class="col-lg-6 login-btm login-button">
-                                <a asp-action="Register" asp-controller="Member" class="tx-create-account">Create account</a>
+                                <a asp-action="register" asp-controller="auth" class="tx-create-account">Create account</a>
                                 <button type="submit" class="btn btn-outline-primary">LOGIN</button>
                             </div>
                         </div>
