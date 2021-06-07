@@ -12,9 +12,10 @@
     -webkit-box-sizing: border-box;
 }
 
-.btn-full{
-    width:100%;
+.btn-full {
+    width: 100%;
 }
+
 .main-container {
     padding: 20px 0;
 }
@@ -37,18 +38,24 @@ a.btn-icon {
         color: #fff;
     }
 
-.card-body table.dataTable tbody tr{
-    background-color:unset;
+.card-body table.dataTable tbody tr {
+    background-color: unset;
 }
+
 .card-body .dataTables_wrapper label,
 .card-body .dataTables_info {
     color: #fff !important;
 }
-.card-body .dataTables_wrapper .dataTables_paginate .paginate_button{
-    padding:0;
+
+.card-body .dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 0;
 }
 
 
-.dark-mode .swal2-popup .swal2-content, .dark-mode .swal2-popup .swal2-title{
-    color:#000 !important;
+.dark-mode .swal2-popup .swal2-content, .dark-mode .swal2-popup .swal2-title {
+    color: #000 !important;
+}
+
+.dark-mode .swal2-popup {
+    background-color: #fff !important;
 }

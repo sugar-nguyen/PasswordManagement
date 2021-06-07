@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -59,6 +60,15 @@ namespace LuuTruMatKhau.Services.Lib
                     }
                 }
             }
+        }
+
+
+        public static string CreateRandomPrivateKey(int? length)
+        {
+            string s = "123456789abcdefghi";
+            var rand = new Random();
+
+            return new string(Enumerable.Repeat(s, length ?? 32).Select(x => x[rand.Next(x.Length)]).ToArray());
         }
     }
 }

@@ -271,5 +271,43 @@ namespace LuuTruMatKhau.DataAccess
             }
             return model;
         }
+        public async Task<List<OutputModel>> ExecuteNonQueryWithTransactionWithOutParamAsync(string spname, params object[] parameters)
+        {
+            List<OutputModel> model = new List<OutputModel>();
+            try
+            {
+                var query = spname;
+                var param = new DynamicParameters();
+                for (int i = 0; i < parameters.Length - 1; i += 2)
+                {
+                    if (parameters[i].ToString().Contains("|out"))
+                    {
+                        param.Add(parameters[i].ToString().Replace("|out", ""), parameters[i + 1], direction: ParameterDirection.Output);
+                        OutputModel item = new OutputModel
+                        {
+                            Label = parameters[i].ToString().Replace("|out", ""),
+                            Value = ""
+                        };
+                        model.Add(item);
+                    }
+                    else
+                    {
+                        param.Add(parameters[i].ToString(), parameters[i + 1]);
+                    }
+                }
+                context.BeginTransaction();
+                await context.Database.ExecuteAsync(query, param, context.Transaction, commandType: System.Data.CommandType.StoredProcedure);
+                for (int i = 0; i < model.Count; i++)
+                {
+                    model[i].Value = (param.Get<dynamic>(model[i].Label)).ToString();
+                }
+                context.CommitTransaction();
+            }
+            catch (Exception ex)
+            {
+                context.Dispose();
+            }
+            return model;
+        }
     }
 }

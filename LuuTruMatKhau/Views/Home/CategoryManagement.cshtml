@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="w-100 text-right">
-                    <button class="btn btn-outline-light d-inline-block" onclick="addCategory()"><i class="fas fa-plus-circle"></i> Add category</button>
+                    <button class="btn btn-outline-light d-inline-block" onclick="addCategory()"><i class="fas fa-plus-circle"></i> Add Category</button>
                 </div>
             </div>
         </div>
@@ -17,7 +17,7 @@
 <div class="card card-primary card-outline" id="card-tb-cate">
     <div class="card-header">
         <h3 class="card-title">
-            List  Category
+            List Password Category
         </h3>
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -41,6 +41,19 @@
                 700,
                 "Save",
                 'Category.saveCate()',
+                null,
+                null
+            );
+        }
+
+        function openModalEditCate(cateID) {
+            Common.createModalCustom(
+                "EDIT CATEGORY",
+                '/home/_GetViewInsertCategory',
+                { cateID: cateID },
+                700,
+                "Save",
+                'Category.updateCate(' + cateID + ')',
                 null,
                 null
             );

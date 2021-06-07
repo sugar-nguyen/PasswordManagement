@@ -69,6 +69,40 @@
         })
         
     },
+    updateCate: function (cateID) {
+
+        var cateName = $('#CateName').val();
+        var desc = $('#Description').val();
+
+        if (cateName === '' || desc === '') {
+            Toast.fire({
+                icon: 'error',
+                title: 'Category name or description is empty'
+            })
+            return;
+        }
+
+        $.ajax({
+            url: '/home/UpdateCategory',
+            type: 'POST',
+            data: {cateID: cateID, cateName: cateName, description: desc },
+            success: function (rs) {
+                if (rs.success) {
+                    Toast.fire({
+                        icon: 'success',
+                        title: rs.message
+                    })
+                    Category.reloadTBCate();
+                    $('#modal-notify').modal('hide');
+                } else {
+                    Toast.fire({
+                        icon: 'error',
+                        title: rs.message
+                    })
+                }
+            }
+        });
+    },
     reloadTBCate: function () {
         $.ajax({
             url: '/home/_GetGetCategoryViewModel',

@@ -29,6 +29,7 @@ namespace LuuTruMatKhau
             services.AddScoped<IMemberRepository, MemberRepository>();
             services.AddScoped<IConnectionFactory, SqlConnectionFactory>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IAccountRepository, AccountRepository>();
             services.Configure<ConfigMailModel>(Configuration.GetSection("MailConfig"));
             services.Configure<SystemConfig>(Configuration.GetSection("SystemConfig"));
 

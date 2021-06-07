@@ -1,0 +1,21 @@
+﻿@model LuuTruMatKhau.Model.Account
+<form method="post" id="form-i-cate">
+    <div class="form-group">
+        <label>Username:</label>
+        <input asp-for="UserName" class="form-control" placeholder="Enter username">
+    </div>
+    <div class="form-group">
+        <label>Password:</label>
+        <input type="password" asp-for="Password" class="form-control" placeholder="Enter password" />
+    </div>
+    <div class="form-group">
+        <label>Category:</label>
+        <select asp-for="CateID" asp-items="ViewBag.SelectCate as SelectList" class="form-control"></select>
+    </div>
+    <div class="form-group">
+        <label>Member Password:</label>
+        <input type="password" id="mb-psw" class="form-control" placeholder="Enter your password" />
+        <i style="font-size:12px;">Your password to encrypt and decrypt account password</i>
+    </div>
+</form>
+

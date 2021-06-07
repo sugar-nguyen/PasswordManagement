@@ -1,0 +1,30 @@
+﻿@model List<LuuTruMatKhau.Model.Account>
+@{ 
+    Layout = null;
+}
+<table class="table text-nowrap" id="tb-account">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>UserName</th>
+            <th>PassWord</th>
+            <th>Category Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ int n = 1;}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td></td>
+                <td>@item.UserName</td>
+                <td>@item.Password</td>
+                <td>@item.CateName</td>
+                <td></td>
+            </tr>
+            n++;
+        }
+
+    </tbody>
+</table>
