@@ -27,6 +27,11 @@
 <div class="card card-primary card-outline" id="card-tb-account">
     <div class="card-header">
         <h3 class="card-title">List Account</h3>
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                <i class="fas fa-minus"></i>
+            </button>
+        </div>
     </div>
     <div class="card-body">
         <partial name="_GetAccountViewModel" model="ViewBag.AccountMember as List<LuuTruMatKhau.Model.Account>" />

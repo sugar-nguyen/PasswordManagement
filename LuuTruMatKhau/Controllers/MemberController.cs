@@ -135,20 +135,28 @@ namespace LuuTruMatKhau.Controllers
                     _configMailModel.Value.Message = code.ToString();
                     _configMailModel.Value.MailTo = register.Email;
 
-                    var isSendEmail = MailServices.SendVerifyEmail(_configMailModel.Value);
+                    var isSendEmail = true;// MailServices.SendVerifyEmail(_configMailModel.Value);
                     if (isSendEmail)
                     {
-                        ViewBag.IsShowModalVerify = 1;
+                        //ViewBag.IsShowModalVerify = 1;
                         ViewBag.UserName = register.UserName;
+                        return RedirectToAction("_Verifycation",new {us=register.UserName });
                     }
-                    else
-                    {
-                        ViewBag.IsShowModalVerify = 0;
-                    }
+                    //else
+                    //{
+                    //    ViewBag.IsShowModalVerify = 0;
+                    //}
                 }
             }
             return View(register);
         }
+
+        [Route("verify")]
+        public IActionResult _Verifycation(string us)
+        {
+            return PartialView("_Verify");
+        }
+
         [Route("active")]
         [HttpPost]
         public IActionResult ActiveMember(string code, string userName)

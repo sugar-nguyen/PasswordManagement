@@ -17,11 +17,14 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td></td>
+                <td>@n</td>
                 <td>@item.UserName</td>
                 <td>@item.Password</td>
                 <td>@item.CateName</td>
-                <td></td>
+                <td>
+                    <button class="btn btn-outline-primary"><i class="fas fa-pencil-alt"></i>&nbsp;Edit</button>
+                    <button class="btn btn-outline-danger"><i class="fas fa-trash"></i>&nbsp;Delete</button>
+                </td>
             </tr>
             n++;
         }

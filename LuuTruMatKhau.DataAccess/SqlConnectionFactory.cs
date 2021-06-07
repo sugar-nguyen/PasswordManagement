@@ -18,7 +18,7 @@ namespace LuuTruMatKhau.DataAccess
             _config = config;
 
             if (_connection == null)
-                _connection = new  SqlConnection(_config.GetConnectionString("SqlConnectionString1"));
+                _connection = new  SqlConnection(_config.GetConnectionString("SqlConnectionString2"));
             if (_connection.State != ConnectionState.Open)
                 _connection.Open();
         }
